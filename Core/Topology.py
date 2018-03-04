@@ -1,5 +1,5 @@
 class Topology:
-    def __init__(self,layers,neuronsPerLayaers,activationFunctionPerLayers):
+    def __init__(self,layers,neuronsPerLayers,activationFunctionPerLayers):
         self.layers=layers
-        self.neuronsPerLayaers=neuronsPerLayaers
+        self.neuronsPerLayers=neuronsPerLayers
         self.activationFunctionPerLayers=activationFunctionPerLayers
