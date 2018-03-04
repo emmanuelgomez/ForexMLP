@@ -3,8 +3,15 @@ from keras.layers import Dense
 import numpy
 
 class Trainer:
-    def __init__(self,topology):
+    def __init__(self,topology, epochs, lossFunction, optimizerMethod):
         self.topology = topology
+        self.epochs = epochs
+        self.lossFunction = lossFunction
+        self.optimizerMethod = optimizerMethod
+
+    def LoadData(self, nValidation):
+        dataLoader = DataLoader(nValidation)
+        self.trainingData, self.validationData = dataLoader.GetTrainingData(self.topology.inputLayer);
 
     def StartTrainig(self):
         # fix random seed for reproducibility
