@@ -6,6 +6,9 @@ class Model:
     def __init__(self):
         self.database=DBSelector('psycopg2',dbname='forex', user='postgres', password='postgres', host='localhost')
 
+    def SaveResults(self, topologyId, results):
+        #pendiente
+
     def FillDatabase(self):
         pares = ["USD/EUR",
                  "USD/GBP",
@@ -58,3 +61,4 @@ class Model:
 
         # Close communication with the database
         self.databaseclose()
+
