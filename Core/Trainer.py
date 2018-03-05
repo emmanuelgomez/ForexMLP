@@ -36,6 +36,7 @@ class Trainer:
             mean[y] = sum[y] / 3
 
         #INSERT INTO Table Results (mean)
+        Model.SaveResults(self.topology.id, mean)
 
     def StartTrainig(self):
         ### Fix random seed ### Puede ser cualquier valor. Es importante poner un valor fijo porque se quieren comparar resultados,
