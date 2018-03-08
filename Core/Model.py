@@ -1,10 +1,11 @@
 from datetime import *
 from random import *
 from Core.DBSelector import DBSelector
+from Core.Config import *
 
 class Model:
     def __init__(self):
-        self.database=DBSelector('psycopg2',dbname='forex', user='postgres', password='postgres', host='localhost')
+        self.database=DBSelector(configConector,dbname= configDBname, user=configUser, password=configPassword, host=configHost)
         self.dataInitializedForFetch=False
 
     def SaveResults(self, topologyId, results):
