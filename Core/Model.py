@@ -1,10 +1,11 @@
 from datetime import *
 from random import *
-from Core import DBSelector
+from Core.DBSelector import DBSelector
 
 class Model:
     def __init__(self):
         self.database=DBSelector('psycopg2',dbname='forex', user='postgres', password='postgres', host='localhost')
+        self.dataInitializedForFetch=False
 
     def SaveResults(self, topologyId, results):
         pass
@@ -61,4 +62,10 @@ class Model:
 
         # Close communication with the database
         self.databaseclose()
+
+    def GetDataLimited(self,limit):
+        if(not self.dataInitializedForFetch):
+            self.database.execute("""SELECT * from data ORDER BY id""")
+            self.dataInitializedForFetch=True
+        return self.database.cursor.fetchmany(limit)
 

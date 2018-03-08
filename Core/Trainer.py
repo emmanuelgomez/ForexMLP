@@ -1,7 +1,7 @@
 from keras.models import Sequential
 from keras.layers import Dense
 import numpy
-from Core import Model
+from Core import Model,DataLoader
 
 # SGD : Método de descenso por el gradiente
 # MSE : Error cuadrático medio
