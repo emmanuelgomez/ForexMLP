@@ -7,7 +7,7 @@ class Model:
         self.database=DBSelector('psycopg2',dbname='forex', user='postgres', password='postgres', host='localhost')
 
     def SaveResults(self, topologyId, results):
-        #pendiente
+        pass
 
     def FillDatabase(self):
         pares = ["USD/EUR",

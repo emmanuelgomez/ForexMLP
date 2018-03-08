@@ -1,6 +1,7 @@
 from keras.models import Sequential
 from keras.layers import Dense
 import numpy
+from Core import Model
 
 # SGD : Método de descenso por el gradiente
 # MSE : Error cuadrático medio
@@ -28,7 +29,7 @@ class Trainer:
 
         for x in range(10):
             for y in range(4):
-                sum[y] += resultsList[x][y]
+                sum[y] += self.resultsList[x][y]
 
         mean = [0, 0, 0, 0]
 
@@ -76,13 +77,13 @@ class Trainer:
             # Fit the model (Train the model with our loaded data in a fix number of epochs)
             trainLoss, trainAccuracy = model.fit(Xt, Yt, epochs=self.epochs, batch_size=1, verbose=0)
 
-            ######Puntualizar bien con Enmanuel como van a estar organizados los datos
+            ##TODO:Puntualizar bien con Enmanuel como van a estar organizados los datos
 
             ### Evaluate the model ###
             valLoss, valAccuracy = model.evaluate(Xv, Yv, verbose=0)
             self.resultsList[iterator]=(trainLoss, trainAccuracy, valLoss, valAccuracy)
 
-            if(verbose == 1):
-                print("\nIteration: %.0f Loss: %.2f, Accuracy: %.2f%%" % (iterator, loss, accuracy * 100))
+            if(self.verbose == 1):
+                print("\nIteration: %.0f Loss: %.2f, Accuracy: %.2f%%" % (iterator, valLoss, valAccuracy * 100))
 
         self.trained = True
