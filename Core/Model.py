@@ -64,9 +64,23 @@ class Model:
         # Close communication with the database
         self.databaseclose()
 
-    def GetDataLimited(self,limit):
-        if(not self.dataInitializedForFetch):
-            self.database.execute("""SELECT * from data ORDER BY id""")
-            self.dataInitializedForFetch=True
-        return self.database.cursor.fetchmany(limit)
+    def GetDataLimited(self,limit,par):
+        self.database.execute("""SELECT apertura,maximo,minimo,cierre from data where par ='"""+par+"""'ORDER BY id """ )
+        arrayRetorno = []
+        iterCount = 1
+        while self.database.cursor.rowcount > (limit+1) * iterCount:
+            arrayAux = self.database.cursor.fetchmany(limit+1)
+            array = arrayAux[0:limit]
+            try:
+                lastCierre = arrayAux[limit]
+            except Exception :
+                x=Exception
+                pass
+            arrayRetorno.append([array,lastCierre[3]])
+            iterCount=iterCount+1
+        return arrayRetorno
+
+    def GetAllPar(self):
+        self.database.execute("""select distinct par from data;""")
+        return self.database.cursor.fetchall()
 
