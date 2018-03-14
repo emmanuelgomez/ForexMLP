@@ -15,7 +15,7 @@ class DBSelector:
         self.host=host
 
         if dbType=='psycopg2':
-            self.connection = psycopg2.connect("dbname=forex user=postgres password=postgres host=localhost")
+            self.connection = psycopg2.connect("dbname="+self.dbname+" user="+self.user+" password="+self.password+" host="+self.host)
         if dbType=='sqlite3':
             self.connection = sqlite3.connect(self.dbname + '.db')
         if dbType==':memory:':
