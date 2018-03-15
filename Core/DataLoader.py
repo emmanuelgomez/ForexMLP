@@ -15,6 +15,7 @@ class DataLoader:
             allData = []
             for p in pares:
                 allData= allData + m.GetDataLimited(inputDim,p[0],partTotalDAta)
+                print(p[0]+"   "+str(len(allData)))
             self.allDataList = allData
         random.shuffle(self.allDataList)
         traingData = self.allDataList[0:int(len(self.allDataList)*0.7)]
