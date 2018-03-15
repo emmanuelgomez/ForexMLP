@@ -64,8 +64,8 @@ class Model:
         # Close communication with the database
         self.databaseclose()
 
-    def GetDataLimited(self,limit,par):
-        self.database.execute("""SELECT apertura,maximo,minimo,cierre from data where par ='"""+par+"""'ORDER BY id """ )
+    def GetDataLimited(self,limit,par,startPosition):
+        self.database.execute("""SELECT apertura,maximo,minimo,cierre from data where par ='"""+par+"""' and id > """+str(startPosition)+"""ORDER BY id """ )
         arrayRetorno = []
         iterCount = 1
         while self.database.cursor.rowcount > (limit+1) * iterCount:
@@ -83,4 +83,8 @@ class Model:
     def GetAllPar(self):
         self.database.execute("""select distinct par from data;""")
         return self.database.cursor.fetchall()
+    def GetTotalData(self):
+        self.database.execute("""select count(*) from data;""")
+        total = self.database.cursor.fetchall()
+        return total[0][0]
 
